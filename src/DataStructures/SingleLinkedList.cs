@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CodingChallengeCollection.DataStructures
 {
-    internal class SingleLinkedList {
+    public class SingleLinkedList {
         public Node First;
         public Node Last;
 
-        internal void AddLast(int value)
+        public void AddLast(int value)
         {
             var newNode = new Node(value);
             if (First == null) {
@@ -48,9 +49,38 @@ namespace CodingChallengeCollection.DataStructures
             }
             return list;
         }
+
+        public Node KthNodeFromTheEnd(int k)
+        {
+            return new Node(0);
+        }
+
+        public Node KthNodeFromTheEnd_OnePass(int k)
+        {
+            var first = First;
+            var  second = First;
+            var distance = 0;
+            while (second is not null)
+            {
+                if (second == Last)
+                    return first;
+
+                second = second.Next;
+                if (distance == k - 1)
+                {
+                    first = first.Next;
+                }
+                else
+                {
+                    distance++;
+                }
+            }
+
+            throw new Exception("Not found, something went wrong.");
+        }
     }
 
-    internal class Node {
+    public class Node {
 
         public int Value;
         public Node Next;
