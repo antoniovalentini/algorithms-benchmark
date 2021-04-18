@@ -8,6 +8,7 @@ namespace CodingChallengeCollection.DataStructures
 {
     public class HashTable
     {
+        private LinkedList<Entry>[] Entries = new LinkedList<Entry>[5];
         public void Put(int key, string value)
         {
 
@@ -19,6 +20,11 @@ namespace CodingChallengeCollection.DataStructures
         }
 
         public void Remove(int key)
+        {
+
+        }
+
+        private class Entry
         {
 
         }
