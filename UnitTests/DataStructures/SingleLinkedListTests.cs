@@ -29,7 +29,7 @@ namespace CodingChallengeCollection.UnitTests.DataStructures
             var kth = list.KthNodeFromTheEnd_OnePass(k);
 
             // ASSERT
-            Assert.Equal(value, kth.Value);
+            Assert.Equal(value, kth.val);
         }
     }
 }

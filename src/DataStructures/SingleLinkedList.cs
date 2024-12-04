@@ -4,18 +4,18 @@ using System.Collections.Generic;
 namespace CodingChallengeCollection.DataStructures
 {
     public class SingleLinkedList {
-        public Node First;
-        public Node Last;
+        public ListNode First;
+        public ListNode Last;
 
         public void AddLast(int value)
         {
-            var newNode = new Node(value);
+            var newNode = new ListNode(value);
             if (First == null) {
                 First = Last = newNode;
             }
             else
             {
-                Last.Next = newNode;
+                Last.next = newNode;
                 Last = newNode;
             }
         }
@@ -24,12 +24,12 @@ namespace CodingChallengeCollection.DataStructures
         public void Reverse()
         {
             var current = First;
-            Node prev = null;
+            ListNode prev = null;
 
             while (current != null)
             {
-                var next = current.Next;
-                current.Next = prev;
+                var next = current.next;
+                current.next = prev;
                 prev = current;
                 current = next;
             }
@@ -38,24 +38,24 @@ namespace CodingChallengeCollection.DataStructures
             First = prev;
         }
 
-        public List<Node> ToList()
+        public List<ListNode> ToList()
         {
-            var list = new List<Node>();
+            var list = new List<ListNode>();
             var current = First;
             while (current != null)
             {
                 list.Add(current);
-                current = current.Next;
+                current = current.next;
             }
             return list;
         }
 
-        public Node KthNodeFromTheEnd(int k)
+        public ListNode KthNodeFromTheEnd(int k)
         {
-            return new Node(0);
+            return new ListNode(0);
         }
 
-        public Node KthNodeFromTheEnd_OnePass(int k)
+        public ListNode KthNodeFromTheEnd_OnePass(int k)
         {
             var first = First;
             var  second = First;
@@ -65,10 +65,10 @@ namespace CodingChallengeCollection.DataStructures
                 if (second == Last)
                     return first;
 
-                second = second.Next;
+                second = second.next;
                 if (distance == k - 1)
                 {
-                    first = first.Next;
+                    first = first.next;
                 }
                 else
                 {
@@ -80,18 +80,35 @@ namespace CodingChallengeCollection.DataStructures
         }
     }
 
-    public class Node {
+    public class ListNode {
 
-        public int Value;
-        public Node Next;
+        public int val;
+        public ListNode? next;
 
-        public Node(int value) {
-            Value = value;
+        public ListNode(int val, ListNode? next = null) {
+            this.val = val;
+            this.next = next;
         }
 
         public override string ToString()
         {
-            return $"{Value}";
+            return $"{val}";
+        }
+
+        public static implicit operator ListNode(int[]? values)
+        {
+            if (values == null || values.Length == 0)
+                return null;
+
+            var head = new ListNode(values[0]);
+            var current = head;
+
+            for (var i = 1; i < values.Length; i++) {
+                current.next = new ListNode(values[i]);
+                current = current.next;
+            }
+
+            return head;
         }
     }
 }
