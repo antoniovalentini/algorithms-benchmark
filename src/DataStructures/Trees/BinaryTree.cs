@@ -21,13 +21,13 @@ public class BinaryTree
             return new TreeNode(value);
         }
 
-        if (value < node.Value)
+        if (value < node.val)
         {
-            node.Left = InsertRec(node.Left, value);
+            node.left = InsertRec(node.left, value);
         }
-        else if (value > node.Value)
+        else if (value > node.val)
         {
-            node.Right = InsertRec(node.Right, value);
+            node.right = InsertRec(node.right, value);
         }
 
         return node; // return the unchanged node pointer
@@ -43,14 +43,14 @@ public class BinaryTree
         var current = root;
         while (current != null)
         {
-            if (value == current.Value) return true;
-            if (value < current.Value)
+            if (value == current.val) return true;
+            if (value < current.val)
             {
-                current = current.Left;
+                current = current.left;
             }
             else
             {
-                current = current.Right;
+                current = current.right;
             }
         }
         return false;
@@ -59,16 +59,16 @@ public class BinaryTree
 
 public class TreeNode
 {
-    public int Value { get; set; }
+    public int val { get; set; }
 
-    public TreeNode? Left { get; set; }
+    public TreeNode? left { get; set; }
 
-    public TreeNode? Right { get; set; }
+    public TreeNode? right { get; set; }
 
-    public TreeNode(int value, TreeNode? left = null, TreeNode? right = null)
+    public TreeNode(int val, TreeNode? left = null, TreeNode? right = null)
     {
-        Value = value;
-        Left = left;
-        Right = right;
+        this.val = val;
+        this.left = left;
+        this.right = right;
     }
 }
